@@ -209,7 +209,9 @@
   .shot-caption { text-align: center; color: var(--muted); font-size: 0.92rem; margin: 0; }
 
   /* ────────── FEATURES ────────── */
-  .features { padding: 10px 0 84px; }
+  /* Vertical only — `wrap` supplies the 24px horizontal gutter. A `padding`
+     shorthand here would zero it and run the cards to the screen edge on phones. */
+  .features { padding-top: 10px; padding-bottom: 84px; }
   .feature-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
   .fcard {
     background: var(--card);
@@ -248,7 +250,7 @@
   .fcard.wide .plus-item .dot { font-size: 1.3rem; }
 
   /* ────────── COMING SOON ────────── */
-  .soon { padding: 0 0 84px; }
+  .soon { padding-bottom: 84px; }
   .soon-inner {
     background: linear-gradient(180deg, var(--teal-soft), transparent 85%);
     border: 1.5px dashed rgba(31, 158, 140, 0.4);
@@ -278,7 +280,7 @@
   .scard p { margin: 0; color: var(--muted); font-size: 0.96rem; }
 
   /* ────────── WHAT'S NEW ────────── */
-  .news { padding: 0 0 90px; }
+  .news { padding-bottom: 90px; }
   .release {
     background: var(--card);
     border: 1px solid var(--hairline);
