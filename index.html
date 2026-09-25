@@ -41,6 +41,11 @@
 
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='15' fill='%2360CFC2'/%3E%3Cpath d='M0 32 Q16 24 32 32 T64 32 L64 64 L0 64 Z' fill='%232E86A8'/%3E%3Cellipse cx='30' cy='47' rx='11' ry='8' fill='white'/%3E%3Cpath d='M21 47 L11 40 L13 47 L11 54 Z' fill='white'/%3E%3Ccircle cx='35' cy='46' r='2' fill='%232E86A8'/%3E%3C/svg%3E">
 
+<!-- Font Awesome 6 (solid) — matches the icon set the app itself uses for
+     Coral Plus features (see components/CoralPlusSheet.tsx PLUS_FEATURES,
+     which renders these exact same icon names via FontAwesome6). -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
 <style>
   /* ────────── THEME COLORS — light "parchment" / dark "espresso" ────────── */
   :root {
@@ -249,35 +254,36 @@
   }
   .fcard.wide .plus-item .dot { font-size: 1.3rem; }
 
-  /* ────────── COMING SOON ────────── */
-  .soon { padding-bottom: 84px; }
-  .soon-inner {
-    background: linear-gradient(180deg, var(--teal-soft), transparent 85%);
-    border: 1.5px dashed rgba(31, 158, 140, 0.4);
+  /* ────────── CORAL PLUS ────────── */
+  .plus { padding-bottom: 84px; }
+  .plus-inner {
+    background: linear-gradient(180deg, rgba(230, 151, 60, 0.10), transparent 85%);
+    border: 1.5px solid rgba(230, 151, 60, 0.3);
     border-radius: 30px;
     padding: 52px 32px 44px;
   }
-  .soon-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; max-width: 920px; margin: 0 auto; }
-  .scard {
-    position: relative;
+  .plus-inner .section-head p { max-width: 480px; margin: 10px auto 0; }
+  .plus-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; max-width: 920px; margin: 0 auto; }
+  .pcard {
     background: var(--card);
     border: 1px solid var(--hairline);
     border-radius: 20px;
     padding: 26px 24px 24px;
     box-shadow: var(--shadow-sm);
-    opacity: 0.92;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
   }
-  .scard .badge {
-    position: absolute; top: -12px; right: 16px;
-    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-    font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase;
-    background: var(--orange); color: #fff;
-    border-radius: 999px;
-    padding: 4px 12px;
+  .pcard:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+  .pcard .picon {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 46px; height: 46px;
+    border-radius: 14px;
+    background: rgba(230, 151, 60, 0.16);
+    color: var(--orange);
+    font-size: 1.15rem;
+    margin-bottom: 14px;
   }
-  .scard .femoji { font-size: 1.6rem; display: inline-block; margin-bottom: 12px; filter: saturate(0.75); }
-  .scard h3 { font-size: 1.18rem; font-weight: 700; margin-bottom: 7px; }
-  .scard p { margin: 0; color: var(--muted); font-size: 0.96rem; }
+  .pcard h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 6px; }
+  .pcard p { margin: 0; color: var(--muted); font-size: 0.95rem; }
 
   /* ────────── WHAT'S NEW ────────── */
   .news { padding-bottom: 90px; }
@@ -332,7 +338,7 @@
   /* ────────── RESPONSIVE ────────── */
   @media (max-width: 900px) {
     .feature-grid { grid-template-columns: repeat(2, 1fr); }
-    .soon-grid { grid-template-columns: 1fr; max-width: 460px; }
+    .plus-grid { grid-template-columns: repeat(2, 1fr); max-width: 640px; }
     .shot-row { justify-content: flex-start; }
   }
   @media (max-width: 600px) {
@@ -343,7 +349,8 @@
     .store-row { flex-direction: column; align-items: stretch; }
     .store-badge { justify-content: center; }
     .release { padding: 26px 22px; }
-    .soon-inner { padding: 44px 20px 36px; }
+    .plus-inner { padding: 44px 20px 36px; }
+    .plus-grid { grid-template-columns: 1fr; max-width: 460px; margin: 0 auto; }
   }
 </style>
 </head>
@@ -475,31 +482,59 @@
   </div>
 </section>
 
-<!-- ═══════════════════════ COMING SOON ═══════════════════════ -->
-<section class="soon wrap">
-  <div class="soon-inner">
+<!-- ═══════════════════════ CORAL PLUS ═══════════════════════ -->
+<section class="plus wrap">
+  <div class="plus-inner">
     <div class="section-head reveal" style="margin-bottom: 36px;">
-      <span class="kicker">On the horizon</span>
-      <h2>Coming soon</h2>
+      <span class="kicker">$5.99, once — no subscription</span>
+      <h2>Coral Plus</h2>
+      <p>One purchase unlocks every tool below, forever. Everything else in the app — the full catalog, museum, altars, and townsfolk — stays completely free.</p>
     </div>
-    <div class="soon-grid">
-      <article class="scard reveal">
-        <span class="badge">Coming soon</span>
-        <span class="femoji">🎣</span>
-        <h3>Catchable right now</h3>
-        <p>See exactly which fish, insects, and critters are available for your current season and time of day.</p>
-      </article>
-      <article class="scard reveal">
-        <span class="badge">Coming soon</span>
-        <span class="femoji">🎁</span>
+    <div class="plus-grid">
+      <article class="pcard reveal">
+        <span class="picon"><i class="fa-solid fa-gift" aria-hidden="true"></i></span>
         <h3>Gift planner</h3>
-        <p>Plan your whole week of gifting ahead of time.</p>
+        <p>A smart gifting plan for the week ahead.</p>
       </article>
-      <article class="scard reveal">
-        <span class="badge">Coming soon</span>
-        <span class="femoji">🚜</span>
-        <h3>Multiple farms</h3>
-        <p>Track more than one save.</p>
+      <article class="pcard reveal">
+        <span class="picon"><i class="fa-solid fa-fish" aria-hidden="true"></i></span>
+        <h3>Catchable right now</h3>
+        <p>Live list of what you can catch this moment.</p>
+      </article>
+      <article class="pcard reveal">
+        <span class="picon"><i class="fa-solid fa-map" aria-hidden="true"></i></span>
+        <h3>Today&rsquo;s Route</h3>
+        <p>Where to catch and who to visit, mapped out.</p>
+      </article>
+      <article class="pcard reveal">
+        <span class="picon"><i class="fa-solid fa-people-group" aria-hidden="true"></i></span>
+        <h3>Own a co-op farm</h3>
+        <p>Invite up to 3 friends to play together &mdash; free for them.</p>
+      </article>
+      <article class="pcard reveal">
+        <span class="picon"><i class="fa-solid fa-sack-dollar" aria-hidden="true"></i></span>
+        <h3>Profit calculator</h3>
+        <p>The most valuable way to use or grow anything.</p>
+      </article>
+      <article class="pcard reveal">
+        <span class="picon"><i class="fa-solid fa-umbrella-beach" aria-hidden="true"></i></span>
+        <h3>Farm profiles</h3>
+        <p>Track multiple saves.</p>
+      </article>
+      <article class="pcard reveal">
+        <span class="picon"><i class="fa-solid fa-pen-to-square" aria-hidden="true"></i></span>
+        <h3>Add to to-do list</h3>
+        <p>Queue recipe &amp; upgrade materials straight to your list.</p>
+      </article>
+      <article class="pcard reveal">
+        <span class="picon"><i class="fa-solid fa-palette" aria-hidden="true"></i></span>
+        <h3>Themes &amp; colors</h3>
+        <p>Lock light/dark mode and pick an accent color.</p>
+      </article>
+      <article class="pcard reveal">
+        <span class="picon"><i class="fa-solid fa-tent" aria-hidden="true"></i></span>
+        <h3>Harvest Festival Planner</h3>
+        <p>Predict your score and see how you stack up against the rival.</p>
       </article>
     </div>
   </div>
